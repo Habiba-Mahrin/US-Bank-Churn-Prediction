@@ -1,0 +1,220 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Churn Predictor</title>
+
+    <!-- Bootstrap 5 -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #dfe9f3, #ffffff);
+            min-height: 100vh;
+        }
+
+        /* Navbar */
+        .navbar-custom {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(10px);
+            padding: 15px 30px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+
+        /* Main card */
+        .glass-card {
+            background: rgba(255,255,255,0.75);
+            backdrop-filter: blur(10px);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
+            animation: fadeIn 0.8s ease-in-out;
+        }
+
+        /* Fade in animation */
+        @keyframes fadeIn {
+            from {opacity: 0; transform: translateY(20px);}
+            to {opacity: 1; transform: translateY(0);}
+        }
+
+        /* Page title */
+        .page-title {
+            font-weight: 600;
+            text-align: center;
+            margin-top: 40px;
+            color: #2c3e50;
+        }
+
+        /* Label styling */
+        label {
+            font-weight: 500;
+        }
+
+        /* Result boxes */
+        #result-box, #explanation-box, #email-box {
+            animation: fadeIn 0.6s ease-in-out;
+        }
+
+        pre {
+            background: #fff;
+            padding: 15px;
+            border-radius: 8px;
+            white-space: pre-wrap;
+        }
+    </style>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-light navbar-custom">
+    <a class="navbar-brand fw-bold" href="#" style="font-size: 22px;">🔮 Churn Predictor</a>
+</nav>
+
+<h1 class="page-title">Customer Churn Prediction</h1>
+
+<div class="container mb-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-7 col-md-10">
+
+            <!-- FORM CARD -->
+            <div class="glass-card mt-3">
+                <h4 class="mb-3 text-center">Enter Customer Details</h4>
+
+                <form id="predict-form">
+                    <div class="row g-3">
+
+                        <div class="col-md-6">
+                            <label>Name</label>
+                            <input class="form-control" type="text" name="Name" value="Test User">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Credit Score</label>
+                            <input class="form-control" type="number" name="CreditScore" value="600">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Age</label>
+                            <input class="form-control" type="number" name="Age" value="45">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Balance</label>
+                            <input class="form-control" type="number" name="Balance" value="50000">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Estimated Salary</label>
+                            <input class="form-control" type="number" name="EstimatedSalary" value="50000">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Tenure</label>
+                            <input class="form-control" type="number" name="Tenure" value="3">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Num Of Products</label>
+                            <input class="form-control" type="number" name="NumOfProducts" value="1">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Geography</label>
+                            <input class="form-control" type="text" name="Geography" value="France">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Gender</label>
+                            <input class="form-control" type="text" name="Gender" value="Female">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Has Credit Card</label>
+                            <input class="form-control" type="number" name="HasCrCard" value="1">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label>Is Active Member</label>
+                            <input class="form-control" type="number" name="IsActiveMember" value="1">
+                        </div>
+                    </div>
+
+                    <button class="btn btn-primary w-100 mt-4" type="submit">
+                        🔍 Predict Churn
+                    </button>
+                </form>
+            </div>
+
+            <!-- RESULT BOX -->
+            <div id="result-box" class="alert alert-info mt-4" style="display:none;"></div>
+
+            <!-- EXPLANATION BOX -->
+            <div id="explanation-box" class="alert alert-secondary mt-3" style="display:none;"></div>
+
+            <!-- EMAIL BOX -->
+            <div id="email-box" class="mt-3" style="display:none;">
+                <h5>Email Template</h5>
+                <pre id="email"></pre>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+
+<!-- JS Logic (logic unchanged, syntax fixed) -->
+<script>
+document.getElementById('predict-form').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const form = new FormData(e.target);
+    const payload = {};
+    for (const [k, v] of form.entries()) payload[k] = isNaN(v) ? v : Number(v);
+
+    const p = await fetch('/predict', {
+        method: 'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+    });
+
+    const r = await p.json();
+
+    if (r.error) {
+        document.getElementById('result-box').style.display = "block";
+        document.getElementById('result-box').className = "alert alert-danger";
+        document.getElementById('result-box').innerText = r.error;
+        return;
+    }
+
+    document.getElementById('result-box').style.display = "block";
+    document.getElementById('result-box').innerHTML =
+        `<strong>Churn Probability:</strong> ${r.churn_prob.toFixed(3)} <br>
+         <strong>Prediction:</strong> ${r.churn_pred}`;
+
+    payload['churn_prob'] = r.churn_prob;
+
+    const ecall = await fetch('/explain_and_email', {
+        method:'POST',
+        headers: {'Content-Type':'application/json'},
+        body: JSON.stringify(payload)
+    });
+
+    const ejson = await ecall.json();
+
+    document.getElementById('explanation-box').style.display = "block";
+    document.getElementById('explanation-box').innerText = ejson.explanation.join('\n');
+
+    document.getElementById('email-box').style.display = "block";
+    document.getElementById('email').innerText = ejson.email;
+});
+</script>
+
+</body>
+</html>
