@@ -1,3 +1,4 @@
+<img width="1861" height="968" alt="Screenshot 2025-11-17 150634" src="https://github.com/user-attachments/assets/117d54c1-3378-4705-96fc-22f45e4ebc4b" />
 # 📊 **US Bank Churn Prediction**
 
 A machine-learning powered **customer churn prediction web app** built using Flask.  
