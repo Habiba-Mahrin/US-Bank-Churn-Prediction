@@ -77,3 +77,6 @@ cd US-Bank-Churn-Prediction
 pip install -r requirements.txt
 python app.py
 
+<img width="1861" height="968" alt="Screenshot 2025-11-17 150634" src="https://github.com/user-attachments/assets/d43941cd-3bc5-4286-b05b-2c0dec2898ea" />
+
+
