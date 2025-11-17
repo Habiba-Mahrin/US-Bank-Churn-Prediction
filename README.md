@@ -1,136 +1,79 @@
-📊 US Bank Churn Prediction
+# 📊 **US Bank Churn Prediction**
 
-A machine-learning powered web application built with Flask, designed to predict whether a bank customer is likely to churn.
-✔ Live demo hosted on Render
-✔ Uses a trained ML model (Random Forest / Logistic Regression — depending on your project)
-✔ Clean UI + fully container-ready structure
+A machine-learning powered **customer churn prediction web app** built using Flask.  
+It analyzes customer details and predicts whether they are likely to leave the bank, helping businesses improve retention.
 
-🚀 Live Demo
-
+🔗 **Live Demo:**  
 👉 https://us-bank-churn-prediction.onrender.com/
 
-🏷️ Badges
+---
 
+## 🏷️ **Badges**
 
+![Python](https://img.shields.io/badge/Python-3.10-blue?logo=python)  
+![Flask](https://img.shields.io/badge/Flask-2-black?logo=flask)  
+![Machine Learning](https://img.shields.io/badge/Machine%20Learning-Model-green)  
+![Render](https://img.shields.io/badge/Hosted%20On-Render-blue?logo=render)  
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow)
 
+---
 
+## 📌 **Project Overview**
 
+This project predicts whether a bank customer will churn using a trained machine-learning model.  
+Users enter customer details into a simple web interface, and the model returns **Churn** or **No Churn**.
 
+This application demonstrates:
 
+- End-to-end ML workflow  
+- Model deployment using Flask  
+- Clean UI for user interaction  
+- Hosting on Render with a production-ready setup  
 
+---
 
+## 🧠 **Machine Learning Workflow**
 
-📌 Project Overview
+- Load and preprocess dataset  
+- Feature encoding and scaling  
+- Train ML model (e.g., Random Forest)  
+- Save trained model using `pickle`  
+- Use the model inside Flask to generate predictions in real-time  
 
-Bank churn prediction helps financial institutions identify customers who are likely to leave the bank.
-This project provides:
+---
 
-A trained machine learning model
+## 📁 **Dataset Information**
 
-A Flask web interface
+⚠️ **NOTE:** The Kaggle dataset `bank_churn.csv` is **NOT included** due to licensing and file size.
 
-Real-time predictions based on customer inputs
-
-Clean architecture & deployable structure
-
-The core idea is to help banks understand churn behavior to improve retention.
-
-🧠 Machine Learning Workflow
-
-Load and clean dataset
-
-Perform feature engineering
-
-Train ML model (Random Forest / Logistic Regression)
-
-Save trained model using pickle
-
-Use model inside Flask app for predictions
-
-🧱 Architecture Diagram
-User Input → Flask UI → Preprocessing → ML Model → Prediction → Output (Churn / No Churn)
-
-
-(If you want, I can generate a real image diagram too.)
-
-📥 Dataset
-
-NOTE:
-The Kaggle dataset bank_churn.csv is NOT included in this repository due to licensing restrictions and file size.
-
-🔗 Download the dataset from Kaggle:
+📥 Download the dataset from Kaggle:  
 https://www.kaggle.com/datasets/mathchi/churn-for-bank-customers
 
-After downloading, place the file here:
+After downloading, place it in:
 
-data/bank_churn.csv
 
-🛠️ Tech Stack
-Component	Technology
-Backend	Flask (Python)
-Machine Learning	scikit-learn, pandas, numpy
-UI	HTML, CSS, Bootstrap
-Hosting	Render
-Model Storage	Pickle (.pkl file)
-📂 Project Structure
-churn_app/
-│── app/
-│   ├── static/
-│   ├── templates/
-│   ├── model.pkl
-│   ├── __init__.py
-│   ├── routes.py
-│── data/
-│   ├── bank_churn.csv  (NOT included — download from Kaggle)
-│── app.py
-│── requirements.txt
-│── README.md
-│── Procfile (for Render)
+---
 
-🏃 How to Run Locally
+## 🛠️ **Tech Stack**
 
-1️⃣ Clone repository
+- **Python**
+- **Flask**
+- **scikit-learn**
+- **pandas**
+- **numpy**
+- **pickle (model storage)**
+- **HTML, CSS, Bootstrap**
+- **Gunicorn (for deployment)**
+- **Render (Hosting)**
 
+---
+
+## 💻 **How to Run Locally**
+
+**1. Clone the repository**
+```bash
 git clone https://github.com/Habiba-Mahrin/US-Bank-Churn-Prediction.git
 cd US-Bank-Churn-Prediction
-
-
-2️⃣ Install dependencies
-
 pip install -r requirements.txt
-
-
-3️⃣ Run Flask app
-
 python app.py
 
-
-4️⃣ Visit in browser
-
-http://127.0.0.1:5000
-
-🌐 Deployment (Render)
-
-Render automatically detects your Flask app using:
-
-app.py
-
-requirements.txt
-
-Procfile
-
-Example Procfile:
-
-web: gunicorn app:app
-
-🖼️ Screenshots
-
-(Add your app screenshot here)
-
-📜 License
-
-This project is licensed under the MIT License.
-
-⭐ Support
-
-If this project helped you, please ⭐ star the repo!
