@@ -1,4 +1,4 @@
-<img width="1861" height="968" alt="Screenshot 2025-11-17 150634" src="https://github.com/user-attachments/assets/117d54c1-3378-4705-96fc-22f45e4ebc4b" />
+
 # 📊 **US Bank Churn Prediction**
 
 A machine-learning powered **customer churn prediction web app** built using Flask.  
@@ -6,6 +6,8 @@ It analyzes customer details and predicts whether they are likely to leave the b
 
 🔗 **Live Demo:**  
 👉 https://us-bank-churn-prediction.onrender.com/
+<img width="1861" height="968" alt="Screenshot 2025-11-17 150634" src="https://github.com/user-attachments/assets/10ea15f5-686f-4bbc-8523-8bf1f92a90d3" />
+
 
 ---
 
@@ -78,6 +80,6 @@ cd US-Bank-Churn-Prediction
 pip install -r requirements.txt
 python app.py
 
-<img width="1861" height="968" alt="Screenshot 2025-11-17 150634" src="https://github.com/user-attachments/assets/d43941cd-3bc5-4286-b05b-2c0dec2898ea" />
+
 
 
